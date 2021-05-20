@@ -13,7 +13,7 @@ exports.getAllMedicines = async (req, res) => {
 exports.getMedicine = async (req, res) => {
   const id = req.params.medicineId;
   try {
-    let medicine = await Medicine.find({ _id: id });
+    let medicine = await Medicine.find({ id: id });
     res.status(200).json(medicine);
   } catch (err) {
     res.status(500).json(err);
@@ -23,7 +23,7 @@ exports.getMedicine = async (req, res) => {
 exports.addNewMedicine = async (req, res) => {
   try {
     const medicine = new Medicine({
-      id: req.body.info,
+      id: req.body.id,
       info: req.body.info,
       title: req.body.title,
       symptoms: req.body.symptoms,
