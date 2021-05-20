@@ -23,6 +23,7 @@ exports.getMedicine = async (req, res) => {
 exports.addNewMedicine = async (req, res) => {
   try {
     const medicine = new Medicine({
+      id: req.body.info,
       info: req.body.info,
       title: req.body.title,
       symptoms: req.body.symptoms,
