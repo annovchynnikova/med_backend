@@ -7,7 +7,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const config = require("./config/db");
 const app = express();
-
+// const {MongoClient} = require('mongodb');
 const accessTokenSecret = 'youraccesstokensecret';
 //configure database and mongoose
 mongoose.set("useCreateIndex", true);
@@ -51,6 +51,9 @@ app.use("/medicine",cors(), medicineRoutes)
 
 const musicRoutes = require("./api/routes/music"); //bring in our user routes
 app.use("/music", musicRoutes)
+
+const authRoutes = require("./api/routes/auth"); //bring in our user routes
+app.use("/auth", authRoutes)
 
 app.listen(PORT, () => {
   console.log(`App is running on ${PORT}`);

@@ -13,7 +13,6 @@ exports.getAllDoctors = async (req, res) => {
 };
 
 exports.getDoctor = async (req, res) => {
-  console.log(req.params);
   const email = req.params.doctorEmail;
   try {
     let doctor = await Doctor.find({ email: email });
@@ -32,7 +31,6 @@ exports.addNewDoctor = async (req, res) => {
       email: req.body.email,
       password: req.body.password,
     });
-     console.log(doctor)
     let newDoctor = await doctor.save();
    
     res.status(200).json({ data: newDoctor });
@@ -52,7 +50,6 @@ exports.deleteDoctor = async (req, res) => {
 };
 
 exports.loginDoctor = async (req, res) => {
-  // console.log(req.params);
   // const email = req.params.doctorEmail;
   // try {
   //   let doctor = await Doctor.find({ email: email });
@@ -76,7 +73,6 @@ exports.loginDoctor = async (req, res) => {
 };
 
 exports.profileDoctor = async (req, res) => {
-  console.log(req.params);
   const email = req.params.doctorEmail;
   try {
     let doctor = await Doctor.find({ email: email });

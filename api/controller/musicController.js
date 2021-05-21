@@ -17,7 +17,6 @@ exports.addNewMusic = async (req, res) => {
       artist:req.body.artist,
       music:req.file
     });
-     console.log(music)
     let newMusic = await music.save();
    
     res.status(200).json({ data: newMusic });

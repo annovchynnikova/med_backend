@@ -30,7 +30,6 @@ exports.addNewMedicine = async (req, res) => {
       categories: req.body.categories,
       maker: req.body.maker,
     });
-     console.log(medicine)
     let newMedicine = await medicine.save();
    
     res.status(200).json({ data: newMedicine });
