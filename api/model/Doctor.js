@@ -24,6 +24,10 @@ let doctorSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  liked: {
+    type: Array,
+    required: true
+  },
   created: {
     type: Date,
     default: Date.now()

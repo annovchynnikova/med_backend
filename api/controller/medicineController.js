@@ -23,12 +23,8 @@ exports.getMedicine = async (req, res) => {
 exports.addNewMedicine = async (req, res) => {
   try {
     const medicine = new Medicine({
-      id: req.body.id,
-      info: req.body.info,
-      title: req.body.title,
-      symptoms: req.body.symptoms,
-      categories: req.body.categories,
-      maker: req.body.maker,
+
+      
     });
     let newMedicine = await medicine.save();
    

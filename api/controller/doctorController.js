@@ -30,6 +30,7 @@ exports.addNewDoctor = async (req, res) => {
       phone: req.body.phone,
       email: req.body.email,
       password: req.body.password,
+      liked: req.body.liked,
     });
     let newDoctor = await doctor.save();
    
@@ -44,6 +45,24 @@ exports.deleteDoctor = async (req, res) => {
     const id = req.params.doctorId;
     let result = await Doctor.remove({ _id: id });
     res.status(200).json(result);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
+exports.addLikedMedicines = async (req, res) => {
+  const liked = req.body.liked_id;
+  const email = req.body.email;
+  try {
+    const doctor = await Doctor.find({email: email});
+    if (!doctor.length) throw 'Лікар не знайдений!';
+
+    const arrLiked = doctor[0].liked;
+    if (doctor[0].liked.includes(liked)) throw 'Медикамент вже доданиц!';
+
+    arrLiked.push(liked)
+    await Doctor.updateOne({email: email}, {$set: {liked: arrLiked}})
+    res.status(200).json(arrLiked);
   } catch (err) {
     res.status(500).json(err);
   }
