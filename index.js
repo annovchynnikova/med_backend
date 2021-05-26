@@ -55,6 +55,12 @@ app.use("/music", musicRoutes)
 const authRoutes = require("./api/routes/auth"); //bring in our user routes
 app.use("/auth", authRoutes)
 
+const patientRoutes = require("./api/routes/patient"); //bring in our user routes
+app.use("/patient", patientRoutes)
+
+const formRoutes = require("./api/routes/form"); //bring in our user routes
+app.use("/form", patientRoutes)
+
 app.listen(PORT, () => {
   console.log(`App is running on ${PORT}`);
 });

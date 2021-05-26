@@ -50,23 +50,40 @@ exports.deleteDoctor = async (req, res) => {
   }
 };
 
-exports.addLikedMedicines = async (req, res) => {
+exports.toggleLikedMedicines = async (req, res) => {
   const liked = req.body.liked_id;
   const email = req.body.email;
   try {
     const doctor = await Doctor.find({email: email});
     if (!doctor.length) throw 'Лікар не знайдений!';
 
-    const arrLiked = doctor[0].liked;
-    if (doctor[0].liked.includes(liked)) throw 'Медикамент вже доданиц!';
+    let arrLiked = doctor[0].liked;
+    const index = arrLiked.indexOf(liked);
 
-    arrLiked.push(liked)
+    if(index >= 0) {
+      arrLiked.splice(index, 1);
+    } else {
+      arrLiked.push(liked);
+    }
+
     await Doctor.updateOne({email: email}, {$set: {liked: arrLiked}})
     res.status(200).json(arrLiked);
   } catch (err) {
     res.status(500).json(err);
   }
 };
+
+
+exports.getLikedMedicines = async (req, res) => {
+  const id = req.params.doctorId;
+  try {
+    let doctor = await Doctor.find({ _id: id });
+    if (!doctor.length) throw 'Лікар не знайдений!';
+    res.status(200).json(doctor[0].liked);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+}
 
 exports.loginDoctor = async (req, res) => {
   // const email = req.params.doctorEmail;

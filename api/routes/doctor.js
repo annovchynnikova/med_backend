@@ -9,7 +9,8 @@ router.delete("/:doctorId", doctorController.deleteDoctor);
 // // router.post("/login", doctorController.getDoctorLogin);
 router.post("/login", doctorController.loginDoctor);
 router.get("/profile", doctorController.profileDoctor);
-router.post("/addLiked", doctorController.addLikedMedicines);
+router.post("/liked", doctorController.toggleLikedMedicines);
+router.get("/liked/:doctorId", doctorController.getLikedMedicines);
 
 
 module.exports = router;
