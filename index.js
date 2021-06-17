@@ -7,9 +7,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const config = require("./config/db");
 const app = express();
-// const {MongoClient} = require('mongodb');
 const accessTokenSecret = 'youraccesstokensecret';
-//configure database and mongoose
 mongoose.set("useCreateIndex", true);
 mongoose
   .connect(config.database, { useNewUrlParser: true })
@@ -19,12 +17,7 @@ mongoose
   .catch(err => {
     console.log({ database_error: err });
   });
-// db configuaration ends here
-//registering cors
-// app.use((req, res, next) => {
-//   res.header('Access-Control-Allow-Origin', '*');
-// });
-//configure body parser
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 //configure body-parser ends here
